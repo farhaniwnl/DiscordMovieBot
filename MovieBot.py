@@ -7,6 +7,9 @@ import openai
 import random
 import csv
 from dotenv import load_dotenv 
+import pandas as pd
+
+
 load_dotenv()
 
 TOKEN = os.getenv('DISCORD_TOKEN')
@@ -144,11 +147,19 @@ async def yell(ctx):
     else:
         await ctx.send("No yell quotes found :(")
 
+import pandas as pd
+df = pd.read_csv("Catchphrase.csv")
+
 @client.command(brief='Here is a random movie quote from the CSV file', description='Random movie quote')
 async def catchphrase(ctx):
     print(catchphrases)
-    random_quote = random.choice(catchphrases)
-    await ctx.send(random_quote)
+    random_quote = df.sample().values[0]
+    ret = "```"
+    ret += "Catchphrase: " + random_quote[0] + "\n"
+    ret += "Movie:" + random_quote[1] + "\n"
+    ret += "Context:" + random_quote[2] + "\n"
+    ret += "```"
+    await ctx.send(ret)
 
 responses = 0
 list_user = []
