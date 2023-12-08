@@ -108,7 +108,17 @@ async def year(ctx,arg):
     found = False
     for quote in movie_quotes_commands:
         if str(arg) in quote:
-            await ctx.send(quote)
+            parts = quote.split('","')
+            parts[0] = "Quote: " + parts[0] +'"'
+            parts[1] = "Title: " + parts[1]
+            parts[2] = "Type: " + parts[2]
+            parts[3] = parts[3].replace('"', '')
+            parts[3] = "Year: " + parts[3]
+            ret = "```"
+            for part in parts:
+                ret += part + "\n"
+            ret += "```"
+            await ctx.send(ret)
             found = True
             break
     if not found:
@@ -120,12 +130,23 @@ async def yell(ctx):
     
     if yell_quotes:
         random_yell_quote = random.choice(yell_quotes)
-        await ctx.send(random_yell_quote)
+        parts = random_yell_quote.split('","')
+        parts[0] = "Quote: " + parts[0] +'"'
+        parts[1] = "Title: " + parts[1]
+        parts[2] = "Type: " + parts[2]
+        parts[3] = parts[3].replace('"', '')
+        parts[3] = "Year: " + parts[3]
+        ret = "```"
+        for part in parts:
+            ret += part + "\n"
+        ret += "```"
+        await ctx.send(ret)
     else:
-        await ctx.send(print(yell_quotes))
+        await ctx.send("No yell quotes found :(")
 
 @client.command(brief='Here is a random movie quote from the CSV file', description='Random movie quote')
 async def catchphrase(ctx):
+    print(catchphrases)
     random_quote = random.choice(catchphrases)
     await ctx.send(random_quote)
 
