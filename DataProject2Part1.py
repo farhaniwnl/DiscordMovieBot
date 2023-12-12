@@ -1,3 +1,7 @@
+# packages datetime, timedelta used to pull API data
+# package time used for pulling data every minute and timing with 60 minutes
+# the process of the code works as described: pull the code every minute (at :00 minute) and store the values from the API every minute for 60 minutes.
+
 import sqlite3
 import requests
 import time
@@ -21,7 +25,7 @@ def write_to_db(data):
     # Check for duplicate entry
     c.execute("SELECT * FROM pi_data WHERE time = ?", (data['time'],))
     if not c.fetchone():
-        c.execute("INSERT INTO pi_data (factor, pi, time) VALUES (?, ?, ?)", (data['factor'], data['pi'], data['time']))
+        c.execute("INSERT INTO pi_data (factor, pi, time) VALUES (?, ?, ?)", (data['factor'], data['pi'], data['time'])) # how the values are pulled
         conn.commit()
     conn.close()
 
