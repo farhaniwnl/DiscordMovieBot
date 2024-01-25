@@ -1,4 +1,4 @@
-# For Discord Movie Bot (Part 2) - Team Members: Farhan Khan (crg3ts), Enmanuel Baez (ejb6f), Rafid Mirza (rm2jgk)
+# For Discord Movie Bot (Part 2) - Team Members: Farhan Khan, Enmanuel Baez, Rafid Mirza
 
 ## This discord bot serves to provide movie quotes and catchphrases from popular movies as well as the year they came out.
 ## In order to use the bot you must make sure you have a Discord API token (https://discord.com/developers/applications) as well as an API token for OpeanAi (https://openai.com/blog/openai-api). Make sure you have these keys updated in the .env file.
